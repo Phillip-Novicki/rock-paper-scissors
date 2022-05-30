@@ -1,6 +1,5 @@
 var player1, player2;
 
-const computerSelection = computerPlay();
 function computerPlay(){
     // pick a random number between 0 and 2
     let choice = Math.floor(Math.random() * 3);
@@ -19,30 +18,73 @@ function computerPlay(){
     return text;
 }
 
-// Write a function that converts both choices to numbers and defines a winner
+// Write a function that defines a winner
 function playRound(playerSelection, computerSelection){
     let p = playerSelection.toLowerCase();
     let c = computerSelection.toLowerCase();
     let playerWins;
 
-    switch(p){
-        case 'rock':
-            switch(c){
-                case 'rock':
-                    playerWins = "It's a tie!"
-                    break;
-                case 'paper':
-                    playerWins = "Computer Wins!"
-                    break;
-                case 'scissors':
-                    playerWins = "Player Wins!"
-                    break;
-            }
+    if (p == 'rock'){
+        if (c == 'paper'){
+            playerWins = "Computer Wins!"
+        }
+        else if (c == 'scissors'){
+            playerWins = "Player Wins!"
+        }
+        else{
+            playerWins = "It's a Tie!"
+        }
+    }
+    else if (p == 'scissors'){
+        if (c == 'paper'){
+            playerWins = "Player Wins!"
+        }
+        else if (c == 'rock'){
+            playerWins = "Computer Wins!"
+        }
+        else{
+            playerWins = "It's a Tie!"
+        }
+    }
+    else if (p == 'paper'){
+        if (c == 'rock'){
+            playerWins = "Player Wins!"
+        }
+        else if (c == 'scissors'){
+            playerWins = "Computer Wins!"
+        }
+        else {
+            playerWins = "It's a tie!"
+        }
+    }
+    else{
+        return "Something went wrong..."
     }
     return playerWins;
+} 
+
+// Write a function that plays a 5 round game of Rock Paper Scissors
+function game(){
+    let player_score = 0;
+    let comp_score = 0;
+   
+    for (let i=0; i<5; i++){
+        //Replay round
+        const computerSelection = computerPlay();
+        const playerSelection = computerPlay();
+        let current_game = playRound(playerSelection, computerSelection);
+        //Calculate results
+        if (current_game == "Player Wins!"){
+            player_score +=1;
+            }
+        else if (current_game == "Computer Wins!"){
+            comp_score +=1;
+            }
+        else {
+            continue;
+        }
+    }
+    console.log(`Player has ${player_score} points Computer has ${comp_score} points`);
 }
-const playerSelection = 'Rock';
 
-
-
-console.log(playRound(playerSelection, computerSelection));
+game();
