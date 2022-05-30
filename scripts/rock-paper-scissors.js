@@ -84,7 +84,17 @@ function game(){
             continue;
         }
     }
-    console.log(`Player has ${player_score} points Computer has ${comp_score} points`);
+    if (player_score > comp_score){
+        winner = "Player"
+    }
+    else if (player_score < comp_score){
+        winner = "Computer"
+    }
+    else{
+        winner = "Nobody"
+    };
+    console.log(`Player has ${player_score} points Computer has ${comp_score} points\n
+    ${winner} wins!`);
 }
 
 game();
