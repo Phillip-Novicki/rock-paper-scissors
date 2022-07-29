@@ -1,3 +1,5 @@
+// updated from original version of rock-paper-scissors.  contains ui
+
 var player1, player2;
 
 function computerPlay(){
